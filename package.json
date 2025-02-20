@@ -4,7 +4,8 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "node blog-scraper.js"
+    "start": "node blog-scraper.js",
+    "postinstall": "npx puppeteer browsers install chrome"
   },
   "engines": {
     "node": ">=18"
