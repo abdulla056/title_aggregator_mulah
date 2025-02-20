@@ -8,6 +8,11 @@ WORKDIR /app
 # Copy package.json and package-lock.json (if it exists) FIRST
 COPY package*.json ./
 
+RUN apt-get update && apt-get install -y wget unzip \
+    && wget -q https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+    && apt-get install -y ./google-chrome-stable_current_amd64.deb \
+    && rm google-chrome-stable_current_amd64.deb
+
 # Install dependencies
 RUN npm install
 
