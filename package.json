@@ -4,9 +4,11 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "preinstall": "chown -R $UID:$GID /app",
     "start": "node blog-scraper.js"
   },
+  "engines": {
+    "node": ">=18"
+  },  
   "keywords": [],
   "author": "",
   "license": "ISC",
