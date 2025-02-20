@@ -11,7 +11,10 @@ let browser, page;
 
 // Initialize Puppeteer when the server starts
 const initBrowser = async () => {
-  browser = await puppeteer.launch({ headless: "new" });
+  browser = await puppeteer.launch({
+    headless: "new",
+    executablePath: process.env.CHROME_BIN || "/usr/bin/google-chrome",
+  });
   page = await browser.newPage();
   const url = "https://sea.mashable.com/article";
   await page.goto(url, { waitUntil: "domcontentloaded" });
@@ -36,7 +39,8 @@ app.get("/scrape", async (req, res) => {
       const articles = document.querySelectorAll(".ARTICLE");
       return Array.from(articles).map((article) => {
         const url = article.querySelector("a")?.href || "#";
-        const title = article.querySelector(".caption")?.innerText || "No title";
+        const title =
+          article.querySelector(".caption")?.innerText || "No title";
         const date = article.querySelector("time")?.innerText || "No Date";
         return { title, url, date };
       });
