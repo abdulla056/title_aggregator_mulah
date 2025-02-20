@@ -2,8 +2,8 @@ import express from "express";
 import puppeteer from "puppeteer";
 import cors from "cors";
 
+const PORT = process.env.PORT || 3000; // Use Railway's assigned port or default to 3000
 const app = express();
-const PORT = 3000;
 
 app.use(cors());
 
@@ -56,6 +56,6 @@ process.on("exit", async () => {
 
 // Start the Express server
 app.listen(PORT, async () => {
-  console.log(`Server running at http://localhost:${PORT}`);
+  console.log(`Server running at ${PORT}`);
   await initBrowser(); // Start Puppeteer when server starts
 });
