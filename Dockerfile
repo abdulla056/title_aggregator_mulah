@@ -16,3 +16,13 @@ EXPOSE 3000
 
 # Start the application
 CMD ["node", "blog-scraper.js"]
+
+# ... other Dockerfile instructions
+
+USER root  # Switch to root user temporarily
+
+RUN chown -R $UID:$GID /app
+
+USER appuser # Switch back to a non-root user (if applicable)
+
+# ... other Dockerfile instructions, including npm install
